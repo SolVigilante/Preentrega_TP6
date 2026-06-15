@@ -1,0 +1,95 @@
+\section{Medición de parámetros del transformador}
+En primer lugar, se calculó la inductancia de los devanados del transformador utilizando al función de autobode del osciloscopio y tomando en cuenta el siguiente esquemático:
+
+\begin{figure}[H]
+    \label{fig:inductancia}
+    \centering
+    \begin{tikzpicture}[scale=1.5, transform shape]
+        % Paths, nodes and wires:
+        \node[transformer, cute] at (9.55, 6.8){};
+        \node[oscillator](N1) at (5.98, 6.75){} node[anchor=east] at (N1.west){$V_s$};
+        \draw (8.5, 7.85) to[american resistor, l_={$R$}] (5.5, 7.856);
+        \draw (5.5, 7.856) -| (5.5, 7.25);
+        \draw (8.5, 5.75) -- (5.5, 5.75) |- (5.49, 6.26);
+        \draw[-latex] (8.5, 6) -- (8.5, 7.5);
+        \draw[-latex] (10.5, 6) -- (10.5, 7.5);
+        \node[shape=rectangle, minimum width=0.715cm, minimum height=0.465cm](N2) at (8.125, 6.75){} node[anchor=center] at (N2.text){$V_1$} node[anchor=north west, align=left, text width=0.327cm, inner sep=6pt] at (7.75, 7){};
+        \node[shape=rectangle, minimum width=0.715cm, minimum height=0.465cm](N3) at (11.125, 6.75){} node[anchor=center] at (N3.text){$V_2$} node[anchor=north west, align=left, text width=0.327cm, inner sep=6pt] at (10.75, 7){};
+    \end{tikzpicture}
+    \caption{Esquema utilizado para medir la inductancia de los devanados}
+\end{figure}
+
+Siendo $R = 1k\Omega$. Para determinar la inductancia se ha realizado el diagrama de Bode tomando la señal de entrada como $V_s$ y la señal de salida $V_1$. Para este caso hemos tomado como devanado principal la que tiene indicada 33 espiras y como devanado secundario la que tiene 50 espiras. 
+
+Se repitió la medición con el segundo devanado, el que está indicado con la tensión $V_2$. 
+
+A su vez se han medido las inductancias haciendo uso del analizador de indcutancias.
+
+\begin{table}[H]
+    \centering
+    \label{tab:tabla_ind}
+    
+    \begin{tabular}{|c|c|c|}
+        \hline
+       Devanado & Inductancia calculada[mH] &Inductancia Medida[mH] \\ 
+        \hline
+        1 & 4,36 & 5\\
+        \hline
+        2 & 1,28  & 1,4 \\
+        \hline
+    \end{tabular}
+    
+    \caption{Inductancias de ambos bobinados}
+\end{table}
+
+En segundo lugar se ha estimado el factor de acoplamiento del transformador. Se ha conectado el circuito de la sieguiente forma:
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=1.5,transform shape]
+    	% Paths, nodes and wires:
+    	\node[transformer, cute] at (9.55, 6.8){};
+    	\node[oscillator](N1) at (5.98, 6.75){} node[anchor=east] at (N1.west){$V_s$};
+    	\draw (5.5, 7.856) -| (5.5, 7.25);
+    	\draw (8.5, 5.75) -- (5.5, 5.75) |- (5.49, 6.26);
+    	\draw[-latex] (8.5, 6) -- (8.5, 7.5);
+    	\draw[-latex] (10.5, 6) -- (10.5, 7.5);
+    	\node[shape=rectangle, minimum width=0.715cm, minimum height=0.465cm](N2) at (8.125, 6.75){} node[anchor=center] at (N2.text){$V_1$} node[anchor=north west, align=left, text width=0.327cm, inner sep=6pt] at (7.75, 7){};
+    	\node[shape=rectangle, minimum width=0.715cm, minimum height=0.465cm](N3) at (11.125, 6.75){} node[anchor=center] at (N3.text){$V_2$} node[anchor=north west, align=left, text width=0.327cm, inner sep=6pt] at (10.75, 7){};
+    	\draw (5.5, 7.856) -| (8.5, 7.85);
+    \end{tikzpicture}
+\end{figure}
+
+La fuente, indicado con $V_s$, genera una senoidal de amplitud $1,5Vp$ con frecuencia $f=10kHz$. Se ha medido la tensión sobre $V_1$ y $V_2$ y teniendo en cuenta la inductancia hallada en el punto anterior fue posible aproximar el factor de acoplamiento $k$.
+
+\begin{table}[H]
+    \centering
+    \label{tab:k_1}
+    
+    \begin{tabular}{|c|c|c|}
+        \hline
+            $V_1$[Vpp] & $V_2$[Vpp] & factor de acoplamiento (k) \\ 
+        \hline
+        3,3 & 3,26 & 0,5353\\
+        \hline
+    \end{tabular}
+    
+    \caption{Medición de k sobre el primer devanado}
+\end{table}
+
+Luego, se tomaron las mismas medidas pero dando vuelta el transformador. 
+
+\begin{table}[H]
+    \centering
+    \label{tab:k_2}
+    
+    \begin{tabular}{|c|c|c|}
+        \hline
+            $V_1$[Vpp] & $V_2$[Vpp] & factor de acoplamiento (k) \\ 
+        \hline
+        3,5 & 2,6 & 0,4025\\
+        \hline
+    \end{tabular}
+    
+   \caption{Medición de k sobre el segundo devanado}
+\end{table}
