@@ -93,3 +93,105 @@ Luego, se tomaron las mismas medidas pero dando vuelta el transformador.
     
    \caption{Medición de k sobre el segundo devanado}
 \end{table}
+Observando ambos cuadros pudimos concluir que el lado elevador de tensior era con $L_1$ como la bobina de entrada y el lado reductor era con $L_2$
+
+AGREGAR LA ESTIMACION DE K
+
+\section{Aislamiento Electrico}
+En esta parte de la experiencia se conecto una resistencia $R_m$ de valor nomanal $47 \Omega$ y valor medido $50\Omega$ al lado elevador, como se puede ver en el esquematico de la Figura \ref{fig:aislamiento_electrico}. 
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[transform shape]
+	% Paths, nodes and wires:
+	\node[oscillator](N1) at (1.99, 5.24){};
+	\node at (1.99, 6.1) {$V_s$};
+	\draw (1.5, 7.25) to[american resistor, l={$R_m$}] (4.907, 7.25);
+	\draw (1.5, 7.27) -- (1.5, 5.75) -| (1.5, 5.77) -| (1.5, 5.75) -| (1.5, 5.77);
+	\draw (1.5, 4.75) -| (1.5, 3);
+	\node[ground] at (1.5, 3.407){};
+	\draw (1.5, 3.407) |- (4.907, 3.407);
+	\node[transformer core, cute, xscale=1.83, yscale=1.83](N2) at (6.829, 5.329){} node[anchor=south] at (N2.text){$1:1,5$};
+	\node[shape=rectangle, minimum width=0.965cm, minimum height=0.215cm](N3) at (5.407, 5.25){} node[anchor=center] at (N3.text){$L_1$};
+	\node[shape=rectangle, minimum width=0.715cm, minimum height=0.465cm](N4) at (8.407, 5.25){} node[anchor=center] at (N4.text){$L_2$};
+	\draw[line width=0.6pt, -latex] (9.657, 3.5) -- (9.657, 7.25);
+	\node[shape=rectangle, minimum width=0.715cm, minimum height=0.965cm](N5) at (10.532, 5.5){} node[anchor=center] at (N5.text){$Vout$};
+\end{tikzpicture}
+    \caption{Circuito de analisis del aislamineto electrico}
+    \label{fig:aislamiento_electrico}
+\end{figure}
+
+Luego tomamos las medidas de la caída de tensión sobre $R_m$ en pico-pico, $VR_{m-pp}$, y el valor máximo al que llega el voltaje, $VR_{m-max}$. Además, tomamos el valor de salida del transformador en pico-pico, $Vout_{pp}$, y su valor máximo, $Vout_{max}$. Estas mediciones se realizaron sin offset y utilizando dos valores de offset, de $+5$ V y $-5$ V. Los valores obtenidos se pueden ver en la Tabla \ref{tab:mediciones_offset}.
+
+\begin{table}[H]
+    \centering
+    
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+         & Sin offset & Offset $+5$ V & Offset $-5$ V \\ 
+        \hline
+        $VR_{m-pp}$ [mV]  & 380 & 380 & 380 \\
+        \hline
+        $VR_{m-max}$ [mV] & 169 & 240 & 105 \\
+        \hline
+        $Vout_{pp}$ [mV]  & 170 & 170 & 170 \\
+        \hline
+        $Vout_{max}$ [mV] & 84 & 84 & 84 \\
+        \hline
+    \end{tabular}
+    
+    \caption{Mediciones de tensión para distintos valores de offset}
+    \label{tab:mediciones_offset}
+\end{table}
+
+\section{transformador con carga}
+Luego agregamos una carga $R_L$ de $1$k$\Omega$ como se puede ver en el esquematico de la figura \ref{fig:Transformador con carga lado elevador}. 
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[transform shape]
+	% Paths, nodes and wires:
+	\node[oscillator] at (1.99, 5.24){};
+	\draw (1.5, 7.25) to[american resistor, l={$R_m$}] (4.907, 7.25);
+	\draw (1.5, 7.27) -- (1.5, 5.75) -| (1.5, 5.77) -| (1.5, 5.75) -| (1.5, 5.77);
+	\draw (1.5, 4.75) -| (1.5, 3);
+	\node[ground] at (1.5, 3.407){};
+	\draw (1.5, 3.407) |- (4.907, 3.407);
+	\node[transformer core, cute, xscale=1.83, yscale=1.83](N1) at (6.829, 5.329){} node[anchor=south] at (N1.text){$1:1,5$};
+	\node[shape=rectangle, minimum width=0.965cm, minimum height=0.215cm](N2) at (5.407, 5.25){} node[anchor=center] at (N2.text){$L_1$};
+	\node[shape=rectangle, minimum width=0.715cm, minimum height=0.465cm](N3) at (8.407, 5.25){} node[anchor=center] at (N3.text){$L_2$};
+	\node[shape=rectangle, minimum width=0.965cm, minimum height=0.465cm](N4) at (2.49, 5.24){} node[anchor=center] at (N4.text){$V_s$};
+	\draw (10, 7.25) to[american resistor, l={$R_L$}] (10, 3.5);
+	\draw (8.75, 3.407) -| (10, 3.75);
+	\draw (8.75, 7.25) -- (10, 7.25);
+\end{tikzpicture}
+    \caption{Transformador con carga lado elevador}
+    \label{fig:Transformador con carga lado elevador}
+\end{figure}
+
+PONER MEDICIONES
+
+Luego repetimos el procedimiento pero cambiando el sentido del transformador como se puede ver en el esquema de la Figura \ref{fig:Transformador con carga lado reductor}. 
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[transform shape]
+	% Paths, nodes and wires:
+	\node[oscillator] at (1.99, 5.24){};
+	\draw (1.5, 7.25) to[american resistor, l={$R_m$}] (4.907, 7.25);
+	\draw (1.5, 7.27) -- (1.5, 5.75) -| (1.5, 5.77) -| (1.5, 5.75) -| (1.5, 5.77);
+	\draw (1.5, 4.75) -| (1.5, 3);
+	\node[ground] at (1.5, 3.407){};
+	\draw (1.5, 3.407) |- (4.907, 3.407);
+	\node[transformer core, cute, xscale=1.83, yscale=1.83](N1) at (6.829, 5.329){} node[anchor=south] at (N1.text){$1:1,5$};
+	\node[shape=rectangle, minimum width=0.965cm, minimum height=0.215cm](N2) at (5.407, 5.25){} node[anchor=center] at (N2.text){$L_2$};
+	\node[shape=rectangle, minimum width=0.715cm, minimum height=0.465cm](N3) at (8.407, 5.25){} node[anchor=center] at (N3.text){$L_1$};
+	\node[shape=rectangle, minimum width=0.965cm, minimum height=0.465cm](N4) at (2.49, 5.24){} node[anchor=center] at (N4.text){$V_s$};
+	\draw (10, 7.25) to[american resistor, l={$R_L$}] (10, 3.5);
+	\draw (8.75, 3.407) -| (10, 3.75);
+	\draw (8.75, 7.25) -- (10, 7.25);
+\end{tikzpicture}
+    \caption{Transformador con carga lado reductor}
+    \label{fig:Transformador con carga lado reductor}
+\end{figure}
+
+PONER MEDICIONES
